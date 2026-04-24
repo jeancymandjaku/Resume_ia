@@ -3,8 +3,12 @@ import Auth from './pages/Auth'
 import Home from './pages/Home'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Upload from './pages/Upload';
+// import { usePuterStore } from './lib/puter';
+// import { useEffect } from 'react';
 
 const App = () => {
+  
+
   return (
     <div>
       {/* <Home /> */}

@@ -1,17 +1,25 @@
 // import { useLocation, useNavigate } from "react-router-dom"
 
 import { useEffect } from "react"
+import { usePuterStore } from "../lib/puter";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Auth = () => {
-    // const {isLoading,auth} = usePuterStore();
-    // const location = useLocation();
-    // const next = location.search.split('next=')[1];
-    // const naviagte = useNavigate();
-    
-    // useEffect(() =>{
-    //     if(auth.isAuthenticated) navigate(next);
+    const {isLoading,auth} = usePuterStore();
+    const location = useLocation();
+    const next = location.search.split('next=')[1];
+    const navigate = useNavigate();
 
-    // },[auth.isAuthenticated,next]);
+    const { init } = usePuterStore();
+  
+      useEffect(() => {
+        init()
+      },[init]);
+    
+    useEffect(() =>{
+        if(auth.isAuthenticated) navigate(next);
+
+    },[auth.isAuthenticated,next]);
     
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex items-center - justify-center">
@@ -22,17 +30,24 @@ const Auth = () => {
                     <h2>Log in To continue your job journey</h2>
                 </div>
                 <div>
-                    {/* <button className="auth-buton animate-pulse">
+                    {isLoading ? ( 
+                        <button className="auth-button animate-pulse">
                         <p>Signing you in ...</p>
+                    </button> ): (
+                        <>
+                            {
+                              auth.isAuthenticated? (
+                                     <button className="auth-button" onClick={auth.signOut}>
+                        <p>Log Out.</p>
                     </button>
-
-                    <button className="auth-button" onClick={Auth.signOut}>
-                        <p>Log Out</p>
+                              ) :(
+                                 <button className="auth-button" onClick={auth.signIn}>
+                        <p>Log In.</p>
                     </button>
-
-                    <button  className="auth-button" onClick={Auth.signIn}>
-                        <p>Login</p>
-                    </button> */}
+                              )
+                            }
+                        </>
+                    )}
                 </div>
             </section>
         </div>

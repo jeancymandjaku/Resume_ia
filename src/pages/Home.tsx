@@ -1,11 +1,22 @@
 import Navbar from "../components/Navbar";
 import ResumeCard from "../components/ResumeCard";
 import { resumes } from "../constants";
-import {puter} from '@heyputer/puter.js';
+// import {puter} from '@heyputer/puter.js';
+
+import { useEffect } from "react"
+import { usePuterStore } from "../lib/puter";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+   const { auth } = usePuterStore();
+    const navigate = useNavigate();
+    
+    useEffect(() =>{
+        if(!auth.isAuthenticated) navigate('/auth?next=/');
+    },[auth.isAuthenticated]);
   // Example: Use AI to answer a question
-puter.ai.chat(`Why did the chicken cross the road?`).then(console.log);
+// puter.ai.chat(`Why did the chicken cross the road?`).then(console.log);
+// {window.puter.ai.chat()}
 
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover">
@@ -15,7 +26,7 @@ puter.ai.chat(`Why did the chicken cross the road?`).then(console.log);
         <div className="page-heading">
           <h1>Track Your Application & Resume Ratings</h1>
           <h2>Review your submissions and check AI-powered feedback</h2>
-        </div>
+    e    </div>
 
         {resumes.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mx-auto p-4">

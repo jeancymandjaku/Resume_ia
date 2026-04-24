@@ -4,7 +4,7 @@ const Navbar = () => {
         <a href="/">
         <p className="text-2xl font-bold text-gradient">AI RESUME</p>
         </a>
-        <button className="btn-primary w-fit">
+        <button className="primary-button w-fit">
             <a href="/upload" >
         Upload Resume 
         </a>
