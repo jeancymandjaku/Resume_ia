@@ -30,6 +30,15 @@ const Home = () => {
   // Example: Use AI to answer a question
 // puter.ai.chat(`Why did the chicken cross the road?`).then(console.log);
 // {window.puter.ai.chat()}
+if (isLoading) {
+    return (
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
+            {/* Un petit spinner animé avec Tailwind */}
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+            <p className="text-gray-600 animate-pulse">Sécurisation de votre session...</p>
+        </div>
+    );
+}
 
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover">
@@ -49,6 +58,7 @@ const Home = () => {
           </div>
         )}
       </section>
+      
     </main>
   );
 };
